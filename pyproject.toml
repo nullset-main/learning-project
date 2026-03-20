@@ -3,7 +3,7 @@ name = "learning-project"
 version = "0.1.0"
 description = "objective: to learn ml, dl, ai"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "python-dotenv>=1.1.1",
 ]
