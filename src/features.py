@@ -1,6 +1,3 @@
-def process_folder(input_dir, output_dir, augment=False):
-
-
 # src/features.py
 import os
 import numpy as np
@@ -9,15 +6,18 @@ import tensorflow as tf
 
 IMG_SIZE = (64, 64)
 
+
 def preprocess_image(img_path):
     img = image.load_img(img_path, target_size=IMG_SIZE)
     return np.array(img) / 255.0
+
 
 def preprocess_image_augmented(img_path):
     img_array = preprocess_image(img_path)
     img_array = tf.image.random_flip_left_right(img_array)
     img_array = tf.image.random_brightness(img_array, max_delta=0.1)
     return img_array
+
 
 def process_folder(input_dir, output_dir, augment=False):
     os.makedirs(output_dir, exist_ok=True)
@@ -36,7 +36,11 @@ def process_folder(input_dir, output_dir, augment=False):
 
             img_path = os.path.join(class_input_path, img_name)
             try:
-                processed_img = preprocess_image_augmented(img_path) if augment else preprocess_image(img_path)
+                processed_img = (
+                    preprocess_image_augmented(img_path)
+                    if augment
+                    else preprocess_image(img_path)
+                )
                 save_name = img_name.rsplit(".", 1)[0] + ".npy"
                 save_path = os.path.join(class_output_path, save_name)
                 np.save(save_path, processed_img)
