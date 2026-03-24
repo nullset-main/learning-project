@@ -1,7 +1,7 @@
 # src/features.py
 import os
 import numpy as np
-from tensorflow.keras.preprocessing import image
+from tensorflow.keras.preprocessing import image  # type: ignore
 import tensorflow as tf
 
 IMG_SIZE = (64, 64)
