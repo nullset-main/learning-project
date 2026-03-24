@@ -4,16 +4,15 @@ import os
 from tensorflow.keras.models import load_model
 from features import IMG_SIZE
 
-# Load model
+# Model Loading
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 model_path = os.path.join(BASE_DIR, "models", "hand_sign_cnn.h5")
 model = load_model(model_path)
 print("Model loaded!")
 
-# Labels mapping
+# Labelling
 labels = {0: "scissors", 1: "paper", 2: "rock"}
 
-# Try multiple camera indexes until one works
 camera_index = None
 for i in range(3):
     cap = cv2.VideoCapture(i, cv2.CAP_AVFOUNDATION)
